@@ -1,0 +1,9 @@
+[user]
+	name = Daniel Picken
+	email = dpicken@users.noreply.github.com
+[core]
+	editor = vim
+[branch]
+	autosetuprebase = always
+[push]
+	default = simple
