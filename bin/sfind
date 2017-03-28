@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$1" = "--help" ]; then
+  echo "Usage: $0"
+  exit
+fi
+
+find . -type f \
+\( \
+     -name '*.c' \
+  -o -name '*.cc' \
+  -o -name '*.cpp' \
+  -o -name '*.h' \
+  -o -name '*.hpp' \
+  -o -name '*.rb' \
+\)

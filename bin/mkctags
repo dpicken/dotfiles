@@ -1,0 +1,9 @@
+#/!bin/sh
+
+if [ "$1" = "--help" ]; then
+  echo "Usage: $0"
+  exit
+fi
+
+# ctags doesn't like quoted file names
+sfind | sed 's/^\"\(.*\)\"$/\1/' | ctags --extra=+q -L -
