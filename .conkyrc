@@ -1,0 +1,80 @@
+use_xft yes
+xftfont cantarell:size=9
+xftalpha 1
+update_interval 1
+total_run_times 0
+own_window yes
+own_window_argb_visual yes
+own_window_transparent yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 200
+maximum_width 200
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color white
+alignment top_right
+gap_x 10
+gap_y 36
+if_up_strictness address
+no_buffers yes
+uppercase no
+short_units yes
+cpu_avg_samples 3
+diskio_avg_samples 10
+override_utf8_locale no
+
+TEXT
+${font cantarell:bold:size=9}SYSTEM ${hr 2}
+${font cantarell:normal:size=9}${sysname} ${kernel} ${alignr}${machine}
+Host${alignr}${nodename}
+Uptime${alignr}${uptime_short}
+
+${font cantarell:bold:size=9}RESOURCES ${hr 2}
+${font cantarell:normal:size=9}CPU${goto 45}${cpubar 9,120 cpu0}${alignr}${cpu cpu0}%
+${goto 45}${cpubar cpu1 9,55}${goto 110}${cpubar cpu2 9,55}
+${goto 45}${cpubar cpu3 9,55}${goto 110}${cpubar cpu4 9,55}
+${goto 45}${cpubar cpu5 9,55}${goto 110}${cpubar cpu6 9,55}
+${goto 45}${cpubar cpu7 9,55}${goto 110}${cpubar cpu8 9,55}
+${goto 45}${cpubar cpu9 9,55}${goto 110}${cpubar cpu10 9,55}
+${goto 45}${cpubar cpu11 9,55}${goto 110}${cpubar cpu12 9,55}
+RAM${goto 45}${membar 9,120}${alignr}${memperc}%
+Swap${goto 45}${swapbar 9,120}${alignr}${swapperc}%
+
+${font cantarell:bold:size=9}NETWORK ${hr 2}
+${font cantarell:normal:size=9}eth0${alignr}${if_up eth0}${addr eth0}${else}Down${endif}
+eth1${alignr}${if_up eth1}${addr eth1}}${else}Down${endif}
+
+${font cantarell:bold:size=9}FILE SYSTEMS ${hr 2}
+${font cantarell:normal:size=9}/${goto 45}${fs_bar 9,120 /}${alignr}${fs_used_perc /}%
+~${goto 45}${fs_bar 9,120 /home}${alignr}${fs_used_perc /home}%
+
+${font cantarell:bold:size=9}INPUT/OUTPUT ${hr 2}
+eth0${goto 45}${downspeedgraph eth0 9,55 FFFFFF FF7070 -t }${goto 110}${upspeedgraph eth0 9,55 FFFFFF FF7070 -t }${alignr}...
+eth1${goto 45}${downspeedgraph eth1 9,55 FFFFFF FF7070 -t }${goto 110}${upspeedgraph eth1 9,55 FFFFFF FF7070 -t }${alignr}...
+${font cantarell:normal:size=9}sda${goto 45}${diskiograph_read /dev/sda 9,55 FFFFFF FF7070 -t }${goto 110}${diskiograph_write /dev/sda 9,55 FFFFFF FF7070 -t }${alignr}${diskio sda}
+
+${font cantarell:bold:size=9}TOP PROCESSES (CPU) ${hr 2}
+${font cantarell:normal:size=9}${top_time name 1}${goto 45}${alignr}${top_time cpu 1}%
+${top_time name 2}${goto 45}${alignr}${top_time cpu 2}%
+${top_time name 3}${goto 45}${alignr}${top_time cpu 3}%
+
+${font cantarell:bold:size=9}TOP PROCESSES (Memory) ${hr 2}
+${font cantarell:normal:size=9}${top_mem name 1}${goto 45}${alignr}${top_mem mem 1}%
+${top_mem name 2}${goto 45}${alignr}${top_mem mem 2}%
+${top_mem name 3}${goto 45}${alignr}${top_mem mem 3}%
+
+${font cantarell:bold:size=9}TOP PROCESSES (I/O) ${hr 2}
+${font cantarell:normal:size=9}${top_io name 1}${goto 45}${alignr}${top_io io_perc 1}%
+${top_io name 2}${goto 45}${alignr}${top_io io_perc 2}%
+${top_io name 3}${goto 45}${alignr}${top_io io_perc 3}%
+
+${font cantarell:bold:size=9}CLOCK ${hr 2}
+${font cantarell:normal:size=9}Time${alignr}${time %H:%M}
+Date${alignr}${time %d %B %Y}
+AWOC${alignr}58.9

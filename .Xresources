@@ -1,0 +1,38 @@
+XTerm*background: black
+XTerm*foreground: gray90
+
+XTerm*backarrowKey: false
+
+XTerm*borderWidth: 0
+
+XTerm*charClass: 46:48,95:48
+
+XTerm*faceName: monospace
+XTerm*faceSize: 10
+
+XTerm*rightScrollBar: true
+XTerm*toolBar: false
+
+XTerm*saveLines: 1000000
+XTerm*scrollKey: true
+XTerm*scrollTtyOutput: false
+
+XTerm*VT100*background: black
+XTerm*VT100*foreground: gray70
+XTerm*VT100.Geometry: 80x40
+
+XTerm.VT100.translations: #override \
+   Ctrl  Shift <Key> L:clear-saved-lines() \n\
+   Ctrl ~Shift <Key> grave: string(0x1c) \n\
+\
+  ~Ctrl  Shift <Key> Tab: string(0x1b) string("[1;2Z") \n\
+   Ctrl ~Shift <Key> Tab: string(0x1b) string("[1;5Z") \n\
+   Ctrl  Shift <Key> Tab: string(0x1b) string("[1;6Z") \n\
+\
+   Ctrl  Shift <Key> backslash: string(0x1b) string("[1;6Y") \n\
+\
+  ~Ctrl  Shift <KeyPress> Prior: string(0x1b) string("[5;2~") \n\
+  ~Ctrl  Shift <KeyPress> Next:  string(0x1b) string("[6;2~") \n\
+\
+   Ctrl  Shift <KeyPress> Prior: scroll-back(1, halfpage) \n\
+   Ctrl  Shift <KeyPress> Next:  scroll-forw(1, halfpage) \n

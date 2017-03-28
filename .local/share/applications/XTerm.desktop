@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=XTerm
+Comment=Use the command line
+TryExec=xterm
+Exec=xterm
+Icon=utilities-terminal
+Type=Application
+Categories=GNOME;GTK;Utility;TerminalEmulator;
