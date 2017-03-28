@@ -1,0 +1,5 @@
+"FTP" tcp port 21 or tcp port 20
+"iSCSI" tcp port 3260
+"iSNS" tcp port 3205
+"NFS" tcp port 2049 or udp port 2049
+"SMB" tcp port 139 or tcp port 445
