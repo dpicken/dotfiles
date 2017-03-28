@@ -1,0 +1,2 @@
+export LSCOLORS='exDxxxxxxxxxxxBxBxxxxx'
+alias ls='ls -G'

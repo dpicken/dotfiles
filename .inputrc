@@ -1,0 +1,20 @@
+$if Bash
+  # Up/Down
+  "\e[A": history-search-backward
+  "\e[B": history-search-forward
+
+  # Home/End
+  "\e[H": beginning-of-line
+  "\e[F": end-of-line
+
+  # Ctrl-Left/Ctrl-Right
+  "\e[1;5D": backward-word
+  "\e[1;5C": forward-word
+
+  Control-Q: "exit\n"
+  Control-W: unix-filename-rubout
+  Control-\\: "fg\n"
+
+  set colored-stats on
+  set completion-ignore-case on
+$endif

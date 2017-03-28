@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ "$1" = "--help" ]; then
+  echo "Usage: $0"
+  exit
+fi
+
+domain=$(hostname -f | grep -o '\..*' | cut -c 2-)
+
+case "$domain" in
+  local)
+    echo "home"
+    ;;
+  *)
+    echo $domain
+    ;;
+esac

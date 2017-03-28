@@ -1,0 +1,7 @@
+export LS_COLORS='no=00:fi=00:di=94:ln=00;04:su=31;01:sg=31;01:ex=00;01'
+alias ls='ls --color=auto'
+
+# Set xterm window opacity
+if [[ -n "$XTERM_VERSION" ]]; then
+  $HOME/bin/opacity-set --local 0.95
+fi

@@ -1,0 +1,7 @@
+export EDITOR='vim'
+export LOCATION=$($HOME/bin/location)
+export PATH=$PATH:~/bin
+
+if [ -f $HOME/.environment_$LOCATION ]; then
+  . $HOME/.environment_$LOCATION
+fi
