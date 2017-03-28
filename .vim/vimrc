@@ -1,0 +1,147 @@
+set nocompatible
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin management
+
+let s:pathogen_path = $HOME . "/.vim/bundle/vim-pathogen/autoload/pathogen.vim"
+if !filereadable(s:pathogen_path) && has("unix")
+  call system("mkdir -p " . fnamemodify(s:pathogen_path, ":h"))
+  call system("curl -LSso " . s:pathogen_path . " https://tpo.pe/pathogen.vim")
+endif
+
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc options
+
+set autoindent
+set backspace=indent,eol,start
+set cinoptions=g0
+set clipboard=unnamed
+set complete-=i
+set completeopt=longest,menuone
+set display+=lastline
+set noequalalways
+set expandtab
+set fileformat=unix
+set fileformats=unix,dos
+set gdefault
+set history=500
+set nohlsearch
+set ignorecase
+set incsearch
+if &term != "linux"
+  set keymodel=startsel,stopsel
+endif
+set laststatus=2
+set lazyredraw
+set linebreak
+let mapleader=","
+set matchpairs+=<:>
+set nomodeline
+set mouse=
+set mousemodel=popup
+set path=.
+set shiftwidth=2
+set shortmess-=T
+set shortmess+=I
+set showcmd
+set sidescroll=1
+set smartcase
+set smartindent
+set smarttab
+set softtabstop=2
+set splitbelow
+set splitright
+set noswapfile
+set switchbuf=usetab
+if v:version >=702
+  set switchbuf+=newtab
+endif
+set timeoutlen=250
+if has("unix") && isdirectory($HOME . "/.cache")
+  set viminfo+=n$HOME/.cache/viminfo
+endif
+set whichwrap=b,s,h,l,<,>,[,]
+set wildmode=longest,list
+set winaltkeys=yes
+set winheight=10
+set winminheight=0
+set nowrap
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UI options
+
+set guioptions-=a
+
+if has("gui_running")
+  set guicursor=a:block-blinkwait0-blinkoff0-blinkon0
+
+  if has("gui_gtk")
+    set guifont=Monospace\ 10
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+
+  set guitabtooltip=%F
+
+  set guioptions-=m
+  set guioptions-=T
+  set guioptions-=t
+
+  set columns=80
+  set lines=40
+elseif &term =~ "xterm"
+  set t_Co=256
+elseif &term == "linux"
+  " Block cursor
+  set t_ve+=[?81;0;112c
+  let loaded_matchparen = 1
+endif
+
+colorscheme dan
+syntax enable
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin options
+
+filetype plugin indent on
+
+function! s:Chomp(str)
+  return substitute(a:str, '\n\+$', '', '')
+endfunction
+
+let g:location=s:Chomp(system("$HOME/bin/location"))
+let g:netrw_dirhistmax=0
+let g:scm_edit_cmd="SwitchBuf"
+if g:location == "home"
+  let g:ui_buf_strip_trailing_white_space_on_write="yes"
+endif
+
+function! s:SetProjectOptions()
+  if g:location == "home"
+    let g:ui_project_container_paths += [MakePath($HOME, "projects", "dev")]
+
+    let g:ui_project_relative_file_search_paths += ["src"]
+    let g:ui_project_relative_file_search_paths += ["contrib/**"]
+    let g:ui_project_dirnames_excluded_from_guard += ["src"]
+    let g:ui_project_dirnames_excluded_from_namespace += ["src"]
+  endif
+
+  if has("unix")
+    let g:ui_project_absolute_file_search_paths += ["/usr/include"]
+    let g:ui_project_absolute_file_search_paths += ["/usr/include/c++/**"]
+  endif
+endfunction
+
+if has("autocmd")
+  augroup vimrc
+    autocmd!
+    autocmd VimEnter * call s:SetProjectOptions()
+  augroup END
+endif
