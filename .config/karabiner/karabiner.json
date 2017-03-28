@@ -1,0 +1,33 @@
+{
+    "global": {
+        "check_for_updates_on_startup": true,
+        "show_in_menu_bar": true,
+        "show_profile_name_in_menu_bar": false
+    },
+    "profiles": [
+        {
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 1957,
+                        "vendor_id": 1118
+                    },
+                    "ignore": true
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "simple_modifications": {
+                "fn": "left_control",
+                "grave_accent_and_tilde": "non_us_backslash",
+                "left_control": "fn",
+                "non_us_backslash": "grave_accent_and_tilde",
+                "right_alt": "period",
+                "right_command": "comma"
+            }
+        }
+    ]
+}
