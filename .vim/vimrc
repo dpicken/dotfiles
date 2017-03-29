@@ -4,11 +4,16 @@ set nocompatible
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin management
 
-let s:pathogen_path = $HOME . "/.vim/bundle/vim-pathogen/autoload/pathogen.vim"
-if !filereadable(s:pathogen_path) && has("unix")
-  call system("mkdir -p " . fnamemodify(s:pathogen_path, ":h"))
-  call system("curl -LSso " . s:pathogen_path . " https://tpo.pe/pathogen.vim")
-endif
+function s:EnsurePlugin(path, url)
+  if isdirectory(a:path)
+    return
+  endif
+  call system("git clone " . a:url . " " . a:path)
+endfunction
+
+call s:EnsurePlugin($HOME . "/.vim/bundle/vim-pathogen", "https://github.com/tpope/vim-pathogen.git")
+call s:EnsurePlugin($HOME . "/.vim/bundle/vim-scm", "https://github.com/dpicken/vim-scm.git")
+call s:EnsurePlugin($HOME . "/.vim/bundle/vim-ui", "https://github.com/dpicken/vim-ui.git")
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
