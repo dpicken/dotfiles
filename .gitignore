@@ -1,5 +1,10 @@
 /*
 !/bin
+!/Documents
+/Documents/*
+!/Documents/Development
+/Documents/Development/*
+!/Documents/Development/TerminalKeys.terminal
 !/.*
 /.DS_Store
 /.dotfiles.git
