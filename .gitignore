@@ -10,6 +10,7 @@
 /.dotfiles.git
 /.bash_history
 /.bash_sessions
+/.cache
 /.config/*
 !/.config/autostart
 !/.config/karabiner
