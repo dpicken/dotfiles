@@ -15,8 +15,12 @@ if [ -z "$PS1" ]; then
   return
 fi
 
+git_branch() {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+}
+
 # Set prompt/window title
-PS1="\u@\h:\w\$ "
+PS1="\u@\h:\w\$(git_branch)\$ "
 if [[ "$TERM" =~ "xterm" ]]; then
   PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
 fi
