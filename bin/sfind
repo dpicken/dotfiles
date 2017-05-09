@@ -12,5 +12,8 @@ find . -type f \
   -o -name '*.cpp' \
   -o -name '*.h' \
   -o -name '*.hpp' \
+  -o -name 'Makefile' \
+  -o -name '*.mk' \
   -o -name '*.rb' \
+  -o -name '*.sh' \
 \)
