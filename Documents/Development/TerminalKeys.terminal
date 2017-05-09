@@ -26,10 +26,16 @@
 	<key>FontWidthSpacing</key>
 	<real>1.004032258064516</real>
 	<key>ProfileCurrentVersion</key>
-	<real>2.04</real>
+	<real>2.0499999999999998</real>
+	<key>ScrollAlternateScreen</key>
+	<false/>
 	<key>ShowActiveProcessInTitle</key>
 	<false/>
 	<key>ShowDimensionsInTitle</key>
+	<false/>
+	<key>ShowRepresentedURLInTitle</key>
+	<false/>
+	<key>ShowRepresentedURLPathInTitle</key>
 	<false/>
 	<key>TextBoldColor</key>
 	<data>
@@ -53,6 +59,8 @@
 	rwC8AL8AzADVANoA4gDlAPcA+gD/AAAAAAAAAgEAAAAAAAAAIwAAAAAAAAAAAAAAAAAA
 	AQE=
 	</data>
+	<key>WindowTitle</key>
+	<string></string>
 	<key>columnCount</key>
 	<integer>120</integer>
 	<key>keyMapBoundKeys</key>
@@ -65,6 +73,14 @@
 		<string>[1;2D</string>
 		<key>$F703</key>
 		<string>[1;2C</string>
+		<key>$F704</key>
+		<string>[1;2P</string>
+		<key>$F705</key>
+		<string>[1;2Q</string>
+		<key>$F706</key>
+		<string>[1;2R</string>
+		<key>$F707</key>
+		<string>[1;2S</string>
 		<key>$F708</key>
 		<string>[25~</string>
 		<key>$F709</key>
@@ -86,9 +102,9 @@
 		<key>$F72B</key>
 		<string>[1;2F</string>
 		<key>$F72C</key>
-		<string>[5;2~</string>
+		<string>[1;25~</string>
 		<key>$F72D</key>
-		<string>[6;2~</string>
+		<string>[1;26~</string>
 		<key>F704</key>
 		<string>OP</string>
 		<key>F705</key>
@@ -139,6 +155,14 @@
 		<string>[5~</string>
 		<key>F72D</key>
 		<string>[6~</string>
+		<key>^$F702</key>
+		<string>[1;6D</string>
+		<key>^$F703</key>
+		<string>[1;6C</string>
+		<key>^$F72C</key>
+		<string>[1;65~</string>
+		<key>^$F72D</key>
+		<string>[1;66~</string>
 		<key>^F700</key>
 		<string>[1;5A</string>
 		<key>^F701</key>
@@ -152,9 +176,13 @@
 		<key>^F72B</key>
 		<string>[1;5F</string>
 		<key>^F72C</key>
-		<string>[5;5~</string>
+		<string>[1;55~</string>
 		<key>^F72D</key>
-		<string>[6;5~</string>
+		<string>[1;56~</string>
+		<key>~$F702</key>
+		<string>[1;4D</string>
+		<key>~$F703</key>
+		<string>[1;4C</string>
 		<key>~F702</key>
 		<string>[1;3D</string>
 		<key>~F703</key>
@@ -189,6 +217,10 @@
 		<string>[33~</string>
 		<key>~F712</key>
 		<string>[34~</string>
+		<key>~F72C</key>
+		<string>[1;35~</string>
+		<key>~F72D</key>
+		<string>[1;36~</string>
 	</dict>
 	<key>name</key>
 	<string>TerminalKeys</string>
