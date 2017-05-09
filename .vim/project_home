@@ -1,0 +1,7 @@
+let g:ui_project_container_paths += [MakePath($HOME, "projects", "dev")]
+
+let g:ui_project_relative_file_search_paths += ["src"]
+let g:ui_project_relative_file_search_paths += ["contrib/**"]
+
+let g:ui_project_dirnames_excluded_from_guard += ["src"]
+let g:ui_project_dirnames_excluded_from_namespace += ["src"]
