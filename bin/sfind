@@ -16,4 +16,4 @@ find . -type f \
   -o -name '*.mk' \
   -o -name '*.rb' \
   -o -name '*.sh' \
-\)
+\) $*
