@@ -16,10 +16,12 @@
 !/.config/karabiner
 /.gdb_history
 /.lesshst
+/.lldb
 /.local/share/*
 !/.local/share/applications
 /.local/share/applications/*
 !/.local/share/applications/XTerm.desktop
+/.rnd
 /.ssh
 /.Trash
 /.viminfo
