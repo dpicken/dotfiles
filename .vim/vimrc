@@ -71,6 +71,7 @@ set smarttab
 set softtabstop=2
 set splitbelow
 set splitright
+set tabpagemax=100
 set noswapfile
 set switchbuf=usetab
 if v:version >=702

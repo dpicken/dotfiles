@@ -44,7 +44,7 @@ makeopts='-j4'
 alias make='make --no-print-directory $makeopts'
 
 if [ -x /usr/bin/vim ]; then
-  alias vi='vim -p'
+  alias vi='vim'
   alias vim='vim -p'
 fi
 
