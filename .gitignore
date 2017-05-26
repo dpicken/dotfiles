@@ -14,6 +14,7 @@
 /.config/*
 !/.config/autostart
 !/.config/karabiner
+/.cups
 /.gdb_history
 /.lesshst
 /.lldb
