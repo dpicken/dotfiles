@@ -132,13 +132,12 @@ function! s:Chomp(str)
   return substitute(a:str, '\n\+$', '', '')
 endfunction
 
-let g:location=s:Chomp(system("$HOME/bin/location"))
 let g:netrw_dirhistmax=0
 let g:scm_edit_cmd="SwitchBuf"
 let g:ui_buf_strip_trailing_white_space_on_write="yes"
 
 function! s:SetProjectOptions()
-  let project_config_file = $HOME . "/.vim/project_" . g:location
+  let project_config_file = $HOME . "/.vim/project_" . $LOCATION
   if filereadable(project_config_file)
     execute "source " . project_config_file
   endif
