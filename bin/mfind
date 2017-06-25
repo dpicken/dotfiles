@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$1" = "--help" ]; then
+  echo "Usage: $0"
+  exit
+fi
+
+find . -type f \
+\( \
+     -name 'Makefile' \
+  -o -name '*.mk' \
+\) $*
