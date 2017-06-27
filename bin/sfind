@@ -14,6 +14,7 @@ find . -type f \
   -o -name '*.hpp' \
   -o -name 'Makefile' \
   -o -name '*.mk' \
+  -o -name '*.py' \
   -o -name '*.rb' \
   -o -name '*.sh' \
 \) $*
