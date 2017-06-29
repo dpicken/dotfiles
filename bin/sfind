@@ -17,4 +17,5 @@ find . -type f \
   -o -name '*.py' \
   -o -name '*.rb' \
   -o -name '*.sh' \
+  -o -name '*.swift' \
 \) $*
