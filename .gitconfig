@@ -7,3 +7,6 @@
 	autosetuprebase = always
 [push]
 	default = simple
+[alias]
+	log1 = log --oneline
+	wouldpush = diff --stat --cached
