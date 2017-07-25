@@ -3,23 +3,31 @@
 import argparse
 import subprocess
 
-arg_parser = argparse.ArgumentParser(description='Integrate the current git branch with the remote master branch')
-args = arg_parser.parse_args()
+def parse_args():
+    arg_parser = argparse.ArgumentParser(description='Integrate the current git branch with the remote master branch')
+    return arg_parser.parse_args()
 
 def execute_command_line(command_line):
+    print command_line
     return subprocess.check_output(command_line.split())
 
-git_status = execute_command_line('git status --porcelain')
-stash = (git_status != "")
+def git_integrate():
+    git_status = execute_command_line('git status --porcelain')
+    stash = (git_status != "")
 
-if stash:
-    execute_command_line('git stash save --include-untracked')
-try:
-    execute_command_line('git pull')
-    try:
-        execute_command_line('git rebase origin/master')
-    except:
-        execute_command_line('git rebase --abort')
-finally:
     if stash:
-        execute_command_line('git stash pop')
+        execute_command_line('git stash save --include-untracked')
+
+    try:
+        execute_command_line('git pull')
+        execute_command_line('git fetch origin')
+        try:
+            execute_command_line('git rebase origin/master')
+        except:
+            execute_command_line('git rebase --abort')
+    finally:
+        if stash:
+            execute_command_line('git stash pop')
+
+args = parse_args()
+git_integrate()
