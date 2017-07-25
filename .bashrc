@@ -40,7 +40,7 @@ stty quit undef
 CDPATH=:.:..:$HOME
 alias dotfiles='GIT_DIR=$HOME/.dotfiles.git GIT_WORK_TREE=$HOME'
 alias gdb='gdb -quiet'
-makeopts='-j4'
+makeopts=-j$(getconf _NPROCESSORS_ONLN)
 alias make='make --no-print-directory $makeopts'
 
 if [ -x /usr/bin/vim ]; then
