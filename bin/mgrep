@@ -5,4 +5,4 @@ if [ "$1" = "--help" ]; then
   exit
 fi
 
-mfind -print0 | xargs -0 grep --line-number $*
+mfind -print0 | xargs -0 grep --line-number "$@"
