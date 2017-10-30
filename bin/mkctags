@@ -1,7 +1,9 @@
-#/!bin/sh
+#!/bin/bash
 
-if [ "$1" = "--help" ]; then
-  echo "Usage: $0 [--help] [<tagfile>]"
+set -euo pipefail
+
+if [ $# -eq 1 ] && [ "$1" = "--help" ]; then
+  echo "Usage: $(basename $0) [tagfile]"
   exit
 fi
 
