@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if [ "$1" = "--help" ]; then
-  echo "Usage: $0"
+set -euo pipefail
+
+if [ $# -eq 1 ] && [ "$1" = "--help" ]; then
+  echo "Usage: $(basename $0) [find_args]"
   exit
 fi
 
@@ -10,12 +12,15 @@ find . -type f \
      -name '*.c' \
   -o -name '*.cc' \
   -o -name '*.cpp' \
+  -o -name '*.go' \
   -o -name '*.h' \
   -o -name '*.hpp' \
-  -o -name 'Makefile' \
+  -o -name '*.java' \
   -o -name '*.mk' \
   -o -name '*.py' \
   -o -name '*.rb' \
   -o -name '*.sh' \
   -o -name '*.swift' \
+  -o -name 'Makefile' \
+  -o -name 'pom.xml' \
 \) $*
