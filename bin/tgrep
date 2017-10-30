@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ $# -eq 1 ] && [ "$1" = "--help" ]; then
+  echo "Usage: $(basename $0) [grep_options] pattern"
+  exit
+fi
+
+tfind -print0 | xargs -0 grep --line-number "$@"
