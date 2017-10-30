@@ -4,7 +4,7 @@ import argparse
 import subprocess
 
 def parse_args():
-    arg_parser = argparse.ArgumentParser(description='Integrate the current git branch with the remote master branch')
+    arg_parser = argparse.ArgumentParser(description='Integrate the local current and master branches with the remote master branch')
     return arg_parser.parse_args()
 
 def execute_command_line(command_line):
@@ -19,10 +19,14 @@ def git_integrate():
         execute_command_line('git stash save --include-untracked')
 
     try:
-        execute_command_line('git pull')
         execute_command_line('git fetch origin')
         try:
             execute_command_line('git rebase origin/master')
+
+            # Update local master branch (iff it's NOT currently checked out).
+            git_branch = execute_command_line('git symbolic-ref HEAD').rstrip()
+            if git_branch != 'refs/heads/master':
+                execute_command_line('git fetch origin master:master')
         except:
             execute_command_line('git rebase --abort')
     finally:
