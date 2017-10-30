@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ $# -eq 1 ] && [ "$1" = "--help" ]; then
+  echo "Usage: $(basename $0) [--iterations n] command_line"
+  exit
+fi
+
+((iterations=(2**63)-1))
+
+if [ $# -ge 2 ] && [ "$1" = "--iterations" ]; then
+  iterations=$2
+  shift
+  shift
+fi
+
+for (( iteration=1; iteration <= iterations; ++iteration )); do
+  "$@"
+done
