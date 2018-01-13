@@ -3,6 +3,10 @@ $if Bash
   "\e[A": history-search-backward
   "\e[B": history-search-forward
 
+  # Up/Down (blink)
+  "\eOA": history-search-backward
+  "\eOB": history-search-forward
+
   # Home/End
   "\e[H": beginning-of-line
   "\e[F": end-of-line
