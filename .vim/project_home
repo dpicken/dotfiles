@@ -5,3 +5,11 @@ let g:ui_project_relative_file_search_paths += ["contrib/**"]
 
 let g:ui_project_dirnames_excluded_from_guard += ["src"]
 let g:ui_project_dirnames_excluded_from_namespace += ["src"]
+
+function g:InsertCCopyrightStatement()
+    call append(0, "/**")
+    call append(1, " * " . expand("%:p:t"))
+    call append(2, " *")
+    call append(3, " *" . " Copyright (c) " . strftime("%Y") . " Daniel Picken")
+    call append(4, " */")
+endfunction
