@@ -8,6 +8,9 @@ function s:EnsurePlugin(path, url)
   if isdirectory(a:path)
     return 0
   endif
+  if has("ios")
+    return 0
+  endif
   call system("git clone " . a:url . " " . a:path)
   return 1
 endfunction
