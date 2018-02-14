@@ -2,19 +2,42 @@
 
 set -euo pipefail
 
-if [ $# -eq 1 ] && [ "$1" = "--help" ]; then
-  echo "Usage: $(basename $0) [--iterations n] command_line"
+usage() {
+  echo "Usage: $(basename $0) [-i|--iterations n] [-d|--delay <s>] command_line"
   exit
-fi
+}
 
+delay=0
 ((iterations=(2**63)-1))
 
-if [ $# -ge 2 ] && [ "$1" = "--iterations" ]; then
-  iterations=$2
-  shift
-  shift
+declare -a positional
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -i|--iterations)
+      iterations=$2
+      shift
+      shift
+      ;;
+    -d|--delay)
+      delay=$2
+      shift
+      shift
+      ;;
+    -h|--help)
+      usage
+      ;;
+    *)
+      positional+=("$1")
+      shift
+      ;;
+  esac
+done
+if [[ ${#positional[@]} -lt 1 ]]; then
+  usage
 fi
+set -- "${positional[@]}"
 
 for (( iteration=1; iteration <= iterations; ++iteration )); do
   "$@"
+  sleep $delay
 done
