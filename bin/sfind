@@ -23,4 +23,4 @@ find . -type f \
   -o -name '*.swift' \
   -o -name 'Makefile' \
   -o -name 'pom.xml' \
-\) $*
+\) "$@"

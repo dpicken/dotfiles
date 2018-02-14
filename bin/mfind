@@ -12,4 +12,4 @@ find . -type f \
      -name '*.mk' \
   -o -name 'Makefile' \
   -o -name 'pom.xml' \
-\) $*
+\) "$@"

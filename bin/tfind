@@ -9,8 +9,9 @@ fi
 
 find . -type f \
 \( \
-     -name '*.log' \
+     -name '*.conf' \
+  -o -name '*.log' \
   -o -name '*.txt' \
   -o -name '*.yaml' \
   -o -name '*.xml' \
-\) $*
+\) "$@"
