@@ -8,5 +8,4 @@
 [push]
 	default = simple
 [alias]
-	log1 = log --oneline
-	wouldpush = diff --stat --cached
+	log1 = log --date=short --pretty=format:\"%C(yellow)%h %C(yellow)%cd %C(reset)%s\"
