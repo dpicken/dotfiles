@@ -98,7 +98,11 @@ set nowrap
 set guioptions-=a
 
 if has("gui_running")
-  set guicursor=a:block-blinkwait0-blinkoff0-blinkon0
+  if has("ios")
+    set guicursor=a:block-blinkwait60000-blinkoff0-blinkon0
+  else
+    set guicursor=a:block-blinkwait0-blinkoff0-blinkon0
+  endif
 
   if has("gui_gtk")
     set guifont=Monospace\ 10
