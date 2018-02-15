@@ -10,4 +10,4 @@ fi
 tagfile_arg=${1:+-f $1}
 
 # ctags doesn't like quoted file names
-sfind | sed 's/^\"\(.*\)\"$/\1/' | ctags --extras=+q -L - $tagfile_arg
+sfind | sed 's/^\"\(.*\)\"$/\1/' | ctags --extra=+q -L - $tagfile_arg
