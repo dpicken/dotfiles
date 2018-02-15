@@ -1,0 +1,57 @@
+#!/usr/bin/python -u
+
+import contextlib
+import os
+import subprocess
+
+PROJECTS = os.environ['PROJECTS']
+
+@contextlib.contextmanager
+def scoped_cd(directory):
+    previous_directory = os.getcwd()
+    try:
+        os.chdir(directory)
+        yield
+    finally:
+        os.chdir(previous_directory)
+
+def execute_command_line(command_line):
+    print command_line
+    subprocess.check_call(command_line, shell=True)
+
+def integrate(project_path):
+    print "Integrating " + project_path
+    with scoped_cd(project_path):
+        execute_command_line('git-integrate')
+
+def build(project_path):
+    with scoped_cd(project_path):
+        if os.path.isfile(project_path + '/Makefile') == True:
+            print "Building " + project_path
+            execute_command_line('make')
+        execute_command_line('mkctags .tags')
+
+def is_project(project_path):
+    if os.path.isdir(project_path) != True:
+        return False
+    if os.path.isdir(project_path + '/.git') != True:
+        return False
+    return True
+
+def get_project_paths(projects_dir):
+    with scoped_cd(projects_dir):
+        project_paths = []
+        for file in os.listdir('.'):
+            project_path = os.getcwd() + '/' + file
+            if is_project(project_path) != True:
+                continue
+            project_paths.append(project_path)
+    return project_paths
+
+project_paths = []
+project_paths += get_project_paths(PROJECTS + '/dev')
+for project_path in project_paths:
+    integrate(project_path)
+
+for project_path in project_paths:
+    build(project_path)

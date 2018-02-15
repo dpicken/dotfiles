@@ -1,0 +1,38 @@
+#!/usr/bin/osascript
+
+on projectsIntegrateRebuild()
+	set emailAddress to (system attribute "EMAIL")
+
+	set buildScript to "projects-integrate-rebuild"
+	set buildMessageSubject to buildScript
+	set buildMessageContent to ""
+	set buildLogFilePath to "/tmp/" & buildScript & ".log"
+
+	try
+		do shell script "echo '" & buildScript & " 2>&1 >'" & buildLogFilePath & " | bash --login"
+		set buildMessageSubject to buildMessageSubject & " - success"
+	on error errorMessage
+		set buildMessageSubject to buildMessageSubject & " - failed"
+		set buildMessageContent to errorMessage
+	end try
+
+	tell application "Mail"
+		set buildMessage to make new outgoing message
+		set subject of buildMessage to buildMessageSubject
+		set content of buildMessage to buildMessageContent
+		set sender of buildMessage to emailAddress
+		--
+		tell buildMessage
+			set visible to false
+			make new to recipient with properties {name:emailAddress}
+			make new attachment with properties {file name:buildLogFilePath} at the end
+			# HACK: adding an attachment does not to complete synchronously.
+			delay 1
+		end tell
+		send buildMessage
+	end tell
+
+	do shell script "/bin/rm " & buildLogFilePath
+end projectsIntegrateRebuild
+
+projectsIntegrateRebuild()
