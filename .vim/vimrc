@@ -144,14 +144,20 @@ let g:scm_edit_cmd="SwitchBuf"
 let g:ui_buf_strip_trailing_white_space_on_write="yes"
 
 function! s:SetProjectOptions()
+  let g:ui_project_container_paths += split($PROJECT_CONTAINER_PATHS, ":")
+
+  let g:ui_project_relative_file_search_paths += ["src"]
+  let g:ui_project_relative_file_search_paths += ["contrib/**"]
+
+  let g:ui_project_absolute_file_search_paths += ["/usr/include"]
+  let g:ui_project_absolute_file_search_paths += ["/usr/include/c++/**"]
+
+  let g:ui_project_dirnames_excluded_from_guard += ["src"]
+  let g:ui_project_dirnames_excluded_from_namespace += ["src"]
+
   let project_config_file = $HOME . "/.vim/project_" . $LOCATION
   if filereadable(project_config_file)
     execute "source " . project_config_file
-  endif
-
-  if has("unix")
-    let g:ui_project_absolute_file_search_paths += ["/usr/include"]
-    let g:ui_project_absolute_file_search_paths += ["/usr/include/c++/**"]
   endif
 endfunction
 

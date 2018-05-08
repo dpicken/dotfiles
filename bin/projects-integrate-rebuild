@@ -4,7 +4,7 @@ import contextlib
 import os
 import subprocess
 
-PROJECTS = os.environ['PROJECTS']
+PROJECT_CONTAINER_PATHS = os.environ['PROJECT_CONTAINER_PATHS'].split(':')
 
 @contextlib.contextmanager
 def scoped_cd(directory):
@@ -29,6 +29,9 @@ def build(project_path):
         if os.path.isfile(project_path + '/Makefile') == True:
             print "Building " + project_path
             execute_command_line('make')
+        elif os.path.isfile(project_path + '/pom.xml') == True:
+            print "Building " + project_path
+            execute_command_line('mvn --quiet clean install -DskipTests -Dfindbugs.skip=true')
         execute_command_line('mkctags .tags')
 
 def is_project(project_path):
@@ -38,8 +41,8 @@ def is_project(project_path):
         return False
     return True
 
-def get_project_paths(projects_dir):
-    with scoped_cd(projects_dir):
+def get_project_paths(project_container_path):
+    with scoped_cd(project_container_path):
         project_paths = []
         for file in os.listdir('.'):
             project_path = os.getcwd() + '/' + file
@@ -49,7 +52,9 @@ def get_project_paths(projects_dir):
     return project_paths
 
 project_paths = []
-project_paths += get_project_paths(PROJECTS + '/dev')
+for project_container_path in PROJECT_CONTAINER_PATHS:
+    project_paths += get_project_paths(project_container_path)
+
 for project_path in project_paths:
     integrate(project_path)
 
