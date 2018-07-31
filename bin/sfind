@@ -9,7 +9,8 @@ fi
 
 find . -type f \
 \( \
-     -name '*.c' \
+     -name '*.asm' \
+  -o -name '*.c' \
   -o -name '*.cc' \
   -o -name '*.cpp' \
   -o -name '*.go' \
@@ -19,6 +20,7 @@ find . -type f \
   -o -name '*.mk' \
   -o -name '*.py' \
   -o -name '*.rb' \
+  -o -name '*.S' \
   -o -name '*.sh' \
   -o -name '*.swift' \
   -o -name 'Makefile' \
