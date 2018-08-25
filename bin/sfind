@@ -21,6 +21,7 @@ find . -type f \
   -o -name '*.py' \
   -o -name '*.rb' \
   -o -name '*.S' \
+  -o -name '*.s' \
   -o -name '*.sh' \
   -o -name '*.swift' \
   -o -name 'Makefile' \
