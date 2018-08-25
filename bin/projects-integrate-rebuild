@@ -28,10 +28,11 @@ def build(project_path):
     with scoped_cd(project_path):
         if os.path.isfile(project_path + '/Makefile') == True:
             print "Building " + project_path
-            execute_command_line('make')
+            execute_command_line('make $MAKE_OPTIONS clean')
+            execute_command_line('make $MAKE_OPTIONS')
         elif os.path.isfile(project_path + '/pom.xml') == True:
             print "Building " + project_path
-            execute_command_line('mvn --quiet clean install -DskipTests -Dfindbugs.skip=true')
+            execute_command_line('mvn --quiet clean install $MVN_OPTIONS')
         execute_command_line('mkctags .tags')
 
 def is_project(project_path):
