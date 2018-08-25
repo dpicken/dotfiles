@@ -1,5 +1,6 @@
 export EDITOR='vim'
 export LOCATION=$($HOME/bin/location)
+export MAKE_OPTIONS=-j$(getconf _NPROCESSORS_ONLN)
 export PATH=~/bin:$PATH
 
 if [ -f $HOME/.environment_$LOCATION ]; then
