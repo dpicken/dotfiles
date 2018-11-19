@@ -40,6 +40,8 @@ def is_project(project_path):
         return False
     if os.path.isdir(project_path + '/.git') != True:
         return False
+    if os.path.isfile(project_path + '/.pir.skip') == True:
+        return False
     return True
 
 def get_project_paths(project_container_path):
