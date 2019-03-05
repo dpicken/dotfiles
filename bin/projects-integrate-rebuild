@@ -26,7 +26,10 @@ def integrate(project_path):
 
 def build(project_path):
     with scoped_cd(project_path):
-        if os.path.isfile(project_path + '/Makefile') == True:
+        if os.path.isfile(project_path + "/.pir_build") == True:
+            print "Building " + project_path
+            execute_command_line("./.pir_build")
+        elif os.path.isfile(project_path + '/Makefile') == True:
             print "Building " + project_path
             execute_command_line('make $MAKE_OPTIONS clean')
             execute_command_line('make $MAKE_OPTIONS')
@@ -40,7 +43,7 @@ def is_project(project_path):
         return False
     if os.path.isdir(project_path + '/.git') != True:
         return False
-    if os.path.isfile(project_path + '/.pir.skip') == True:
+    if os.path.isfile(project_path + '/.pir_skip') == True:
         return False
     return True
 
@@ -58,8 +61,27 @@ project_paths = []
 for project_container_path in PROJECT_CONTAINER_PATHS:
     project_paths += get_project_paths(project_container_path)
 
+integrate_failures = []
 for project_path in project_paths:
-    integrate(project_path)
+    try:
+        integrate(project_path)
+    except KeyboardInterrupt:
+        raise
+    except:
+        integrate_failures.append(project_path)
 
+build_failures = []
 for project_path in project_paths:
-    build(project_path)
+    try:
+        build(project_path)
+    except KeyboardInterrupt:
+        raise
+    except:
+        build_failures.append(project_path)
+
+if integrate_failures or build_failures:
+    if integrate_failures:
+        print "Failed to integrate:", ", ".join(integrate_failures)
+    if build_failures:
+        print "Failed to build:", ", ".join(build_failures)
+    exit(1)
