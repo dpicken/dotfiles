@@ -22,7 +22,7 @@ def execute_command_line(command_line):
 def integrate(project_path):
     print "Integrating " + project_path
     with scoped_cd(project_path):
-        execute_command_line('git-integrate')
+        execute_command_line('git-branch-stack-integrate')
 
 def build(project_path):
     with scoped_cd(project_path):
@@ -36,6 +36,9 @@ def build(project_path):
         elif os.path.isfile(project_path + '/pom.xml') == True:
             print "Building " + project_path
             execute_command_line('mvn --quiet clean install $MVN_OPTIONS')
+
+def mkctags(project_path):
+    with scoped_cd(project_path):
         execute_command_line('mkctags .tags')
 
 def is_project(project_path):
@@ -78,6 +81,8 @@ for project_path in project_paths:
         raise
     except:
         build_failures.append(project_path)
+    finally:
+        mkctags(project_path)
 
 if integrate_failures or build_failures:
     if integrate_failures:

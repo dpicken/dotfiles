@@ -1,0 +1,52 @@
+#!/usr/bin/python
+
+import argparse
+import contextlib
+import subprocess
+
+def parse_args():
+    arg_parser = argparse.ArgumentParser(description='Integrate the stack of branches between master and the current branch with the remote master branch')
+    return arg_parser.parse_args()
+
+def execute_command_line(command_line):
+    print command_line
+    return subprocess.check_output(command_line.split())
+
+@contextlib.contextmanager
+def scoped_git_stash():
+    git_status = execute_command_line('git status --porcelain')
+    stash = (git_status != "")
+    if stash:
+        execute_command_line('git stash save --include-untracked')
+
+    try:
+        yield
+    finally:
+        if stash:
+            execute_command_line('git stash pop')
+
+def git_rebase(branch):
+    try:
+        if branch == "master":
+            execute_command_line("git rebase origin/master")
+        else:
+            execute_command_line("git rebase")
+    except:
+        execute_command_line('git rebase --abort')
+        raise
+
+def git_branch_stack_integrate():
+    branches = execute_command_line("git-branch-stack-show").split()
+
+    execute_command_line('git fetch origin')
+
+    with scoped_git_stash():
+        try:
+            for branch in reversed(branches):
+                execute_command_line("git checkout " + branch)
+                git_rebase(branch)
+        except:
+            execute_command_line("git checkout " + branches[0])
+
+args = parse_args()
+git_branch_stack_integrate()
