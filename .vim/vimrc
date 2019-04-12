@@ -9,6 +9,7 @@ function s:EnsurePlugin(path, url)
     return 0
   endif
   if has("ios")
+    call mkdir(a:path, "p")
     return 0
   endif
   call system("git clone " . a:url . " " . a:path)
@@ -144,6 +145,10 @@ let g:scm_edit_cmd="SwitchBuf"
 let g:ui_buf_strip_trailing_white_space_on_write="yes"
 
 function! s:SetProjectOptions()
+  if !exists("g:ui_project_container_paths")
+    return
+  endif
+
   let g:ui_project_container_paths += split($PROJECT_CONTAINER_PATHS, ":")
 
   let g:ui_project_relative_file_search_paths += ["src"]
