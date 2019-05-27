@@ -2,6 +2,10 @@ if [ -e $HOME/.environment ]; then
   source $HOME/.environment
 fi
 
+if [ -e $HOME/.bashrc_noninteractive_$OSNAME ]; then
+  source $HOME/.bashrc_noninteractive_$OSNAME
+fi
+
 if [ -e $HOME/.bashrc_noninteractive_$OSTYPE ]; then
   source $HOME/.bashrc_noninteractive_$OSTYPE
 fi
@@ -51,6 +55,10 @@ alias sha256_base64="openssl dgst -binary -sha256 | openssl base64"
 if [ -x /usr/bin/vim ]; then
   alias vi='vim'
   alias vim='vim -p'
+fi
+
+if [ -e $HOME/.bashrc_interactive_$OSNAME ]; then
+  source $HOME/.bashrc_interactive_$OSNAME
 fi
 
 if [ -e $HOME/.bashrc_interactive_$OSTYPE ]; then
