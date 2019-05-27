@@ -7,4 +7,4 @@ if [ $# -eq 1 ] && [ "$1" = "--help" ]; then
   exit
 fi
 
-sfind -print0 | xargs -0 grep --line-number "$@"
+sfind -print0 | xargs -0 grep -H --line-number "$@"
