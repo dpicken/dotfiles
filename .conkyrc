@@ -10,7 +10,7 @@ own_window_type normal
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
 minimum_size 200
-maximum_width 200
+maximum_width 380
 draw_shades yes
 draw_outline no
 draw_borders no
@@ -34,47 +34,37 @@ ${font cantarell:bold:size=9}SYSTEM ${hr 2}
 ${font cantarell:normal:size=9}${sysname} ${kernel} ${alignr}${machine}
 Host${alignr}${nodename}
 Uptime${alignr}${uptime_short}
+AWOC${alignr}58.9
 
 ${font cantarell:bold:size=9}RESOURCES ${hr 2}
-${font cantarell:normal:size=9}CPU${goto 45}${cpubar 9,120 cpu0}${alignr}${cpu cpu0}%
-${goto 45}${cpubar cpu1 9,55}${goto 110}${cpubar cpu2 9,55}
-${goto 45}${cpubar cpu3 9,55}${goto 110}${cpubar cpu4 9,55}
-${goto 45}${cpubar cpu5 9,55}${goto 110}${cpubar cpu6 9,55}
-${goto 45}${cpubar cpu7 9,55}${goto 110}${cpubar cpu8 9,55}
-${goto 45}${cpubar cpu9 9,55}${goto 110}${cpubar cpu10 9,55}
-${goto 45}${cpubar cpu11 9,55}${goto 110}${cpubar cpu12 9,55}
-RAM${goto 45}${membar 9,120}${alignr}${memperc}%
-Swap${goto 45}${swapbar 9,120}${alignr}${swapperc}%
+${font cantarell:normal:size=9}CPU${goto 120}${cpubar 9,180 cpu0}${alignr}${cpu cpu0}%
+${goto 120}${cpubar cpu1 9,80}${goto 220}${cpubar cpu2 9,80}
+RAM${goto 120}${membar 9,180}${alignr}${memperc}%
+Swap${goto 120}${swapbar 9,180}${alignr}${swapperc}%
 
 ${font cantarell:bold:size=9}NETWORK ${hr 2}
-${font cantarell:normal:size=9}eth0${alignr}${if_up eth0}${addr eth0}${else}Down${endif}
+${font cantarell:normal:size=9}wlp1s0${alignr}${if_up wlp1s0}${addr wlp1s0}${else}Down${endif}
 eth1${alignr}${if_up eth1}${addr eth1}}${else}Down${endif}
 
 ${font cantarell:bold:size=9}FILE SYSTEMS ${hr 2}
-${font cantarell:normal:size=9}/${goto 45}${fs_bar 9,120 /}${alignr}${fs_used_perc /}%
-~${goto 45}${fs_bar 9,120 /home}${alignr}${fs_used_perc /home}%
+${font cantarell:normal:size=9}/${goto 120}${fs_bar 9,180 /}${alignr}${fs_used_perc /}%
+~${goto 120}${fs_bar 9,180 /home}${alignr}${fs_used_perc /home}%
 
 ${font cantarell:bold:size=9}INPUT/OUTPUT ${hr 2}
-eth0${goto 45}${downspeedgraph eth0 9,55 FFFFFF FF7070 -t }${goto 110}${upspeedgraph eth0 9,55 FFFFFF FF7070 -t }${alignr}...
-eth1${goto 45}${downspeedgraph eth1 9,55 FFFFFF FF7070 -t }${goto 110}${upspeedgraph eth1 9,55 FFFFFF FF7070 -t }${alignr}...
-${font cantarell:normal:size=9}sda${goto 45}${diskiograph_read /dev/sda 9,55 FFFFFF FF7070 -t }${goto 110}${diskiograph_write /dev/sda 9,55 FFFFFF FF7070 -t }${alignr}${diskio sda}
+${font cantarell:normal:size=9}wlp1s0${goto 120}${downspeedgraph wlp1s0 9,80 FFFFFF FF7070 -t }${goto 220}${upspeedgraph wlp1s0 9,80 FFFFFF FF7070 -t }${alignr}...
+${font cantarell:normal:size=9}sda${goto 120}${diskiograph_read /dev/sda 9,80 FFFFFF FF7070 -t }${goto 220}${diskiograph_write /dev/sda 9,80 FFFFFF FF7070 -t }${alignr}${diskio sda}
 
 ${font cantarell:bold:size=9}TOP PROCESSES (CPU) ${hr 2}
-${font cantarell:normal:size=9}${top_time name 1}${goto 45}${alignr}${top_time cpu 1}%
-${top_time name 2}${goto 45}${alignr}${top_time cpu 2}%
-${top_time name 3}${goto 45}${alignr}${top_time cpu 3}%
+${font cantarell:normal:size=9}${top_time name 1}${goto 120}${alignr}${top_time cpu 1}%
+${top_time name 2}${goto 120}${alignr}${top_time cpu 2}%
+${top_time name 3}${goto 120}${alignr}${top_time cpu 3}%
 
 ${font cantarell:bold:size=9}TOP PROCESSES (Memory) ${hr 2}
-${font cantarell:normal:size=9}${top_mem name 1}${goto 45}${alignr}${top_mem mem 1}%
-${top_mem name 2}${goto 45}${alignr}${top_mem mem 2}%
-${top_mem name 3}${goto 45}${alignr}${top_mem mem 3}%
+${font cantarell:normal:size=9}${top_mem name 1}${goto 120}${alignr}${top_mem mem 1}%
+${top_mem name 2}${goto 120}${alignr}${top_mem mem 2}%
+${top_mem name 3}${goto 120}${alignr}${top_mem mem 3}%
 
 ${font cantarell:bold:size=9}TOP PROCESSES (I/O) ${hr 2}
-${font cantarell:normal:size=9}${top_io name 1}${goto 45}${alignr}${top_io io_perc 1}%
-${top_io name 2}${goto 45}${alignr}${top_io io_perc 2}%
-${top_io name 3}${goto 45}${alignr}${top_io io_perc 3}%
-
-${font cantarell:bold:size=9}CLOCK ${hr 2}
-${font cantarell:normal:size=9}Time${alignr}${time %H:%M}
-Date${alignr}${time %d %B %Y}
-AWOC${alignr}58.9
+${font cantarell:normal:size=9}${top_io name 1}${goto 120}${alignr}${top_io io_perc 1}%
+${top_io name 2}${goto 120}${alignr}${top_io io_perc 2}%
+${top_io name 3}${goto 120}${alignr}${top_io io_perc 3}%
