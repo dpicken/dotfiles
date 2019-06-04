@@ -8,7 +8,7 @@ XTerm*borderWidth: 0
 XTerm*charClass: 46:48,95:48
 
 XTerm*faceName: monospace
-XTerm*faceSize: 10
+XTerm*faceSize: 12
 
 XTerm*rightScrollBar: true
 XTerm*toolBar: false
@@ -19,7 +19,7 @@ XTerm*scrollTtyOutput: false
 
 XTerm*VT100*background: black
 XTerm*VT100*foreground: gray70
-XTerm*VT100.Geometry: 80x40
+XTerm*VT100.Geometry: 80x24
 
 XTerm.VT100.translations: #override \
    Ctrl  Shift <Key> L:clear-saved-lines() \n\
