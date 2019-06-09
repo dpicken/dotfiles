@@ -14,6 +14,10 @@ if [ -e $HOME/.bashrc_noninteractive_$LOCATION ]; then
   source $HOME/.bashrc_noninteractive_$LOCATION
 fi
 
+if [ -e $HOME/.bashrc_noninteractive_$HOSTNAME ]; then
+  source $HOME/.bashrc_noninteractive_$HOSTNAME
+fi
+
 # Don't do anything further if running non-interactively
 if [ -z "$PS1" ]; then
   return
@@ -67,4 +71,8 @@ fi
 
 if [ -e $HOME/.bashrc_interactive_$LOCATION ]; then
   source $HOME/.bashrc_interactive_$LOCATION
+fi
+
+if [ -e $HOME/.bashrc_interactive_$HOSTNAME ]; then
+  source $HOME/.bashrc_interactive_$HOSTNAME
 fi

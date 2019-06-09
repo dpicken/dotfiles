@@ -9,3 +9,7 @@ export PATH=~/bin:$PATH
 if [ -f $HOME/.environment_$LOCATION ]; then
   . $HOME/.environment_$LOCATION
 fi
+
+if [ -f $HOME/.environment_$HOSTNAME ]; then
+  . $HOME/.environment_$HOSTNAME
+fi
