@@ -41,6 +41,7 @@ ${font cantarell:normal:size=9}CPU${goto 120}${cpubar 9,180 cpu0}${alignr}${cpu 
 ${goto 120}${cpubar cpu1 9,80}${goto 220}${cpubar cpu2 9,80}
 RAM${goto 120}${membar 9,180}${alignr}${memperc}%
 Swap${goto 120}${swapbar 9,180}${alignr}${swapperc}%
+Battery${goto 120}${battery_bar 9,180}${alignr}${battery_percent}%
 
 ${font cantarell:bold:size=9}NETWORK ${hr 2}
 ${font cantarell:normal:size=9}wlp1s0${alignr}${if_up wlp1s0}${addr wlp1s0}${else}Down${endif}
