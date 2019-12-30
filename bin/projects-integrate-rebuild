@@ -86,7 +86,7 @@ for project_path in project_paths:
 
 if integrate_failures or build_failures:
     if integrate_failures:
-        print "Failed to integrate:", ", ".join(integrate_failures)
+        print "Failed to integrate:\n ", "\n  ".join(integrate_failures)
     if build_failures:
-        print "Failed to build:", ", ".join(build_failures)
+        print "Failed to build:\n ", "\n  ".join(build_failures)
     exit(1)

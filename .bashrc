@@ -24,7 +24,7 @@ if [ -z "$PS1" ]; then
 fi
 
 git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/^* \(.*\)/[\1]/'
 }
 
 # Set prompt/window title
