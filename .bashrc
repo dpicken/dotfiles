@@ -45,7 +45,7 @@ stty werase undef
 # Control-\
 stty quit undef
 
-CDPATH=:.:..:$HOME
+CDPATH=:.:..:$HOME:$PROJECT_CONTAINER_PATHS
 alias dotfiles='GIT_DIR=$HOME/.dotfiles.git GIT_WORK_TREE=$HOME'
 alias gdb='gdb -quiet'
 alias make='make --no-print-directory $MAKE_OPTIONS'
