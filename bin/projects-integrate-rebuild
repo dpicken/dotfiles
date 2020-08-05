@@ -62,7 +62,7 @@ def build(project_path):
         elif project_path.startswith(GO_PATH) == True:
             print "Building " + project_path
             execute_command_line("go clean")
-            execute_command_line("go build")
+            execute_command_line("go install")
 
 def build_projects(project_paths):
     build_failures = []
