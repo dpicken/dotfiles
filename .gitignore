@@ -25,6 +25,7 @@
 /.local/share/applications/*
 !/.local/share/applications/XTerm.desktop
 /.mozilla
+/.parallel/tmp
 /.pki
 /.rnd
 /.ssh
