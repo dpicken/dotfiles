@@ -11,6 +11,7 @@ find . -type f \
 \( \
      -name '*.conf' \
   -o -name '*.log' \
+  -o -name '*.md' \
   -o -name '*.txt' \
   -o -name '*.yaml' \
   -o -name '*.xml' \
