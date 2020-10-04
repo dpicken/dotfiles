@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $(basename $0) project"
+  exit
+fi
+
+project=$1
+
+cd $project
+
+if [ -d .git ]; then
+  git-integrate
+else
+  >&2 echo $project: unsupported version control system
+  exit 1
+fi

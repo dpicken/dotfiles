@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $(basename $0) command_line_with_%_substitution"
+  exit
+fi
+
+command_line=$1
+
+project-list | xargs -x -n1 -I% bash -c "$command_line"

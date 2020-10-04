@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ $# -ne 0 ]; then
+  echo "Usage: $(basename $0)"
+  exit
+fi
+
+log_file=/tmp/pib.$$.log
+trap "rm -f $log_file" EXIT
+#trap "[ -f $log_file ] && cat $log_file; rm -f $log_file" EXIT
+
+project-for-each "echo Integrating %; project-integrate % >$log_file 2>&1 || ([ -f $log_file ] && cat $log_file)"
+project-for-each "echo Building %; project-build % >$log_file 2>&1 || ([ -f $log_file ] && cat $log_file)"
