@@ -49,9 +49,7 @@ CDPATH=:.:..:$HOME:$PROJECT_CONTAINER_PATHS
 alias dotfiles='GIT_DIR=$HOME/.dotfiles.git GIT_WORK_TREE=$HOME'
 alias gdb='gdb -quiet'
 alias make='make --no-print-directory $MAKE_OPTIONS'
-alias mvn_clean_install_skip_tests="mvn clean install $MVN_SKIP_TESTS_OPTIONS"
-alias mvn_clean_install_with_deps="mvn clean install -am"
-alias mvn_clean_install_with_deps_skip_tests="mvn clean install -am $MVN_SKIP_TESTS_OPTIONS"
+alias mvn_clean_install_unchecked="mvn $MVN_UNCHECKED_OPTIONS clean install"
 alias pretty_stack_trace='sed "s/\\\\n/\\
     /g" | sed "s/\\\\t/    /g" | tr "|" "\n"'
 alias strip_ansi="perl -pe 's/\e\[?.*?[\@-~]//g'"

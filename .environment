@@ -1,7 +1,8 @@
 export EDITOR='vim'
 export LOCATION=$($HOME/bin/location)
 export MAKE_OPTIONS=-j$(getconf _NPROCESSORS_ONLN)
-export MVN_SKIP_TESTS_OPTIONS='-DskipTests -Dfindbugs.skip -Dspotbugs.skip'
+export MVN_SKIP_TESTS_OPTIONS='-DskipTests'
+export MVN_UNCHECKED_OPTIONS="$MVN_SKIP_TESTS_OPTIONS -Dfindbugs.skip -Dspotbugs.skip"
 export MVN_OPTIONS="$MVN_SKIP_TESTS_OPTIONS"
 export OSNAME=$(uname -s | tr '[:upper:]' '[:lower:]')
 export PATH=~/bin:$PATH
