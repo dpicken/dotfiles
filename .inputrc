@@ -15,6 +15,10 @@ $if Bash
   "\e[1;5D": backward-word
   "\e[1;5C": forward-word
 
+  # Alt-Left/Alt-Right
+  "\e[1;3D": backward-word
+  "\e[1;3C": forward-word
+
   Control-Q: "exit\n"
   Control-W: unix-filename-rubout
   Control-\\: "fg\n"
