@@ -11,6 +11,7 @@
 /.bash_history
 /.bash_sessions
 /.cache
+/.CFUserTextEncoding
 /.config/*
 !/.config/autostart
 !/.config/karabiner
