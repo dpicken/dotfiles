@@ -6,6 +6,7 @@
 /Documents/Development/*
 !/Documents/Development/TerminalKeys.terminal
 !/.*
+/.cargo
 /.DS_Store
 /.dotfiles.git
 /.bash_history
@@ -29,6 +30,7 @@
 /.parallel/tmp
 /.pki
 /.rnd
+/.rustup
 /.ssh
 /.sudo_as_admin_successful
 /.Trash

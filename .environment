@@ -6,6 +6,7 @@ export MVN_UNCHECKED_OPTIONS="$MVN_SKIP_TESTS_OPTIONS -Dfindbugs.skip -Dspotbugs
 export MVN_OPTIONS="$MVN_SKIP_TESTS_OPTIONS"
 export OSNAME=$(uname -s | tr '[:upper:]' '[:lower:]')
 export PATH=~/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 
 if [ -f $HOME/.environment_$LOCATION ]; then
