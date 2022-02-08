@@ -3,7 +3,7 @@
 on projectsIntegrateRebuild()
 	set emailAddress to (system attribute "EMAIL")
 
-	set buildScript to "projects-integrate-rebuild"
+	set buildScript to "projects-integrate-and-build"
 	set buildMessageSubject to buildScript
 	set buildMessageContent to ""
 	set buildLogFilePath to "/tmp/" & buildScript & ".log"
