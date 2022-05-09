@@ -1,37 +1,35 @@
-#!/usr/bin/python
+#!/bin/bash
 
-import argparse
-import subprocess
+set -euo pipefail
 
-def parse_args():
-    arg_parser = argparse.ArgumentParser(description='Integrate the local current and master branches with the remote master branch')
-    return arg_parser.parse_args()
+if [ $# -eq 1 ] && [ "$1" = "--help" ]; then
+  echo "Usage: $(basename $0)"
+  exit
+fi
 
-def execute_command_line(command_line):
-    print command_line
-    return subprocess.check_output(command_line.split())
+trap_cmds=""
+trap_add() {
+  local cmd="$1"
+  trap_cmds="$cmd; $trap_cmds"
+  trap "{ $trap_cmds }" EXIT SIGINT SIGTERM
+}
 
-def git_integrate():
-    git_status = execute_command_line('git status --porcelain')
-    stash = (git_status != "")
+original_branch="$(git branch | sed -e '/^[^*]/d' -e 's/^* \(.*\)/\1/')"
+original_status="$(git status --porcelain)"
 
-    if stash:
-        execute_command_line('git stash save --include-untracked')
+if [ -n "$original_status" ]; then
+  git stash save --include-untracked
+  trap_add "git stash pop"
+fi
 
-    try:
-        execute_command_line('git fetch origin')
-        try:
-            execute_command_line('git rebase origin/master')
+if [ "$original_branch" != "master" ]; then
+  git checkout master
+  trap_add "git checkout $original_branch"
+fi
 
-            # Update local master branch (iff it's NOT currently checked out).
-            git_branch = execute_command_line('git symbolic-ref HEAD').rstrip()
-            if git_branch != 'refs/heads/master':
-                execute_command_line('git fetch origin master:master')
-        except:
-            execute_command_line('git rebase --abort')
-    finally:
-        if stash:
-            execute_command_line('git stash pop')
+git pull
 
-args = parse_args()
-git_integrate()
+if [ "$original_branch" != "master" ]; then
+  git checkout "$original_branch"
+  git rebase master
+fi
