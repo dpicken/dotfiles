@@ -2,3 +2,5 @@ export PROJECTS=$HOME/projects
 
 export PROJECT_CONTAINER_PATHS=$PROJECTS/public
 export PROJECT_CONTAINER_PATHS=$PROJECTS/private:$PROJECT_CONTAINER_PATHS
+
+export PICO_SDK_PATH=$PROJECTS/third-party/pico-sdk
