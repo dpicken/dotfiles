@@ -11,7 +11,9 @@ project=$1
 
 cd $project
 
-if [ -d .git ]; then
+if [ -f ./.project-integrate-ignore ]; then
+  >&2 echo $project: ignored
+elif [ -d .git ]; then
   git-integrate
 else
   >&2 echo $project: unsupported version control system
