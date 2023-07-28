@@ -13,6 +13,8 @@ cd $project
 
 if [ -f ./.project-integrate-ignore ]; then
   >&2 echo $project: ignored
+elif [ -f ./.project-integrate ]; then
+  ./.project-integrate
 elif [ -d .git ]; then
   git-integrate
 else
