@@ -18,6 +18,8 @@ elif [ -f ./.project-build ]; then
 elif [ -f ./Makefile ]; then
   make $MAKE_OPTIONS clean
   make $MAKE_OPTIONS
+elif [ -f ./BUILD ]; then
+  bazel build //...
 elif [ -f ./pom.xml ]; then
   mvn $MVN_OPTIONS clean install
 elif [[ $project == $GOPATH* ]]; then
