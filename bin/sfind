@@ -25,5 +25,8 @@ find . -type f \
   -o -name '*.sh' \
   -o -name '*.swift' \
   -o -name 'Makefile' \
+  -o -name 'CMakeLists.txt' \
   -o -name 'pom.xml' \
+  -o -name 'BUILD' \
+  -o -name '*.bzl' \
 \) "$@"
