@@ -135,6 +135,7 @@ syntax enable
 " Plugin options
 
 filetype plugin indent on
+autocmd Filetype gitcommit setlocal formatoptions-=t
 
 function! s:Chomp(str)
   return substitute(a:str, '\n\+$', '', '')
