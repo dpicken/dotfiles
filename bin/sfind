@@ -10,6 +10,7 @@ fi
 find . -type f \
 \( \
      -name '*.asm' \
+  -o -name '*.bzl' \
   -o -name '*.c' \
   -o -name '*.cc' \
   -o -name '*.cpp' \
@@ -24,9 +25,9 @@ find . -type f \
   -o -name '*.s' \
   -o -name '*.sh' \
   -o -name '*.swift' \
+  -o -name '*.tf' \
   -o -name 'Makefile' \
   -o -name 'CMakeLists.txt' \
   -o -name 'pom.xml' \
   -o -name 'BUILD' \
-  -o -name '*.bzl' \
 \) "$@"
