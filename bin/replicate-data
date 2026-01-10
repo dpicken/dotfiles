@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -euo pipefail
+
+REPLICA_SERVER="filer.local"
+REPLICA_BASE_DIR="/srv/data/replica/$(hostname -s)"
+
+function clean_dir() {
+  local path="$1"
+
+  find "$path" -type f -name '.DS_Store' -delete
+}
+
+function clean_projects() {
+  local projects_path="$1"
+
+  find "$projects_path" -name Makefile -maxdepth 2 | xargs -I% bash -c 'cd $(dirname %) && make clean'
+}
+
+function ensure_replica_dir() {
+  local path="$1"
+
+  cmdline="[ -d \"$path\" ] || mkdir \"$path\""
+  quoted_cmdline=$(printf '%q' "$cmdline")
+  ssh "$REPLICA_SERVER" bash -c "$quoted_cmdline"
+}
+
+function replicate_dir() {
+  local local_path="$1"
+  local replica_dir_name="$2"
+
+  clean_dir "$local_path"
+
+  ensure_replica_dir "$REPLICA_BASE_DIR"
+
+  local replica_stem_path="$REPLICA_BASE_DIR/$replica_dir_name"
+  ensure_replica_dir "$replica_stem_path"
+
+  local replica_path=$replica_stem_path/$(basename "$local_path")
+  ensure_replica_dir "$replica_path"
+
+  rsync -av --delete --secluded-args "$local_path/" "$REPLICA_SERVER":"$replica_path"
+}
+
+clean_projects $HOME/projects/public
+
+replicate_dir $HOME/Documents home
+replicate_dir $HOME/Emu home
+replicate_dir $HOME/Pictures home
+replicate_dir $HOME/projects home
+
+replicate_dir "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Backups" icloud
+replicate_dir "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Dan & Namita" icloud
+replicate_dir "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Movies" icloud
+replicate_dir "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Music" icloud
+replicate_dir "$HOME/Library/Mobile Documents/com~apple~CloudDocs/RetroComputing" icloud
+replicate_dir "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Software" icloud
