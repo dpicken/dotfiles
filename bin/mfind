@@ -10,6 +10,7 @@ fi
 find . -type f \
 \( \
      -name '*.mk' \
+  -o -name '*.make' \
   -o -name 'Makefile' \
   -o -name 'pom.xml' \
 \) "$@"
