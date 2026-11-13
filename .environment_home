@@ -4,3 +4,10 @@ export PROJECT_CONTAINER_PATHS=$PROJECTS/public
 export PROJECT_CONTAINER_PATHS=$PROJECTS/private:$PROJECT_CONTAINER_PATHS
 
 export PICO_SDK_PATH=$PROJECTS/third-party/pico-sdk
+
+if [ "$OSNAME" = "darwin" ]; then
+  export OLLAMA_FLASH_ATTENTION="1"
+  export OLLAMA_KV_CACHE_TYPE="q8_0"
+  export OLLAMA_CONTEXT_LENGTH=32768
+  export OLLAMA_NO_CLOUD=1
+fi

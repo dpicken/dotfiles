@@ -1,0 +1,3 @@
+alias co-clean='rm -rf ~/.cache/opencode ~/local/share/opencode ~/.local/state/opencode'
+alias co-start='/opt/homebrew/opt/ollama/bin/ollama serve'
+alias co='[ "$PWD" != "$HOME" ] && sandbox-exec -f ~/.opencode.sb -D HOME="$HOME" -D PWD="$PWD" opencode || (echo refusing to run opencode in home direcory >&2 && false)'

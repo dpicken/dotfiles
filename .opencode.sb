@@ -1,0 +1,35 @@
+(version 1)
+(allow default)
+
+(define home (param "HOME"))
+(define pwd (param "PWD"))
+
+; Deny access to home
+(deny file*
+    (subpath home))
+
+; Allow read/write access to opencode locations
+(allow file-read* file-write*
+    (subpath (string-append home "/.cache/opencode"))
+    (subpath (string-append home "/.config/opencode"))
+    (subpath (string-append home "/.local/share/opencode"))
+    (subpath (string-append home "/.local/state/opencode")))
+
+; Allow read/write access to pwd iff it is NOT home
+(when (not (string=? pwd home))
+    (allow file-read* file-write*
+        (subpath pwd)))
+
+; Deny network access
+(deny network*)
+
+; Allow localhost network access only (loopback TCP/UDP + Unix domain sockets)
+(allow network-outbound
+    (remote ip "localhost:*")
+    (remote unix-socket))
+
+(allow network-inbound
+    (local ip "localhost:*"))
+
+(allow network-bind
+    (local ip "localhost:*"))

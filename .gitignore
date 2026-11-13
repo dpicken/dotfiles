@@ -17,9 +17,12 @@
 /.config/*
 !/.config/autostart
 !/.config/karabiner
+!/.config/opencode
+/.config/opencode/service.json
 /.cups
 /.gdb_history
 /.gnupg
+/.homebrew
 /.ICEauthority
 /.lesshst
 /.lldb
@@ -27,7 +30,9 @@
 !/.local/share/applications
 /.local/share/applications/*
 !/.local/share/applications/XTerm.desktop
+/.local/state
 /.mozilla
+/.ollama
 /.parallel/tmp
 /.pki
 /.rnd
