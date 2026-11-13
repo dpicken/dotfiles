@@ -2,10 +2,13 @@
 
 set -euo pipefail
 
-if [ $# -eq 1 ] && [ "$1" = "--help" ]; then
-  echo "Usage: $(basename $0)"
+if ( [ $# -eq 1 ] && [ "$1" = "--help" ] ) || [ $# -gt 1 ]; then
+  echo "Usage: $(basename $0) [branch name]"
   exit
 fi
+
+base_branch=${1:-master}
+echo $base_branch
 
 trap_cmds=""
 trap_add() {
@@ -14,22 +17,22 @@ trap_add() {
   trap "{ $trap_cmds }" EXIT SIGINT SIGTERM
 }
 
-original_branch="$(git branch | sed -e '/^[^*]/d' -e 's/^* \(.*\)/\1/')"
-original_status="$(git status --porcelain)"
+topic_branch="$(git rev-parse --abbrev-ref HEAD)"
+topic_status="$(git status --porcelain)"
 
-if [ -n "$original_status" ]; then
+if [ -n "$topic_status" ]; then
   git stash save --include-untracked
   trap_add "git stash pop"
 fi
 
-if [ "$original_branch" != "master" ]; then
-  git checkout master
-  trap_add "git checkout $original_branch"
+if [ "$topic_branch" != "$base_branch" ]; then
+  git checkout "$base_branch"
+  trap_add "git checkout $topic_branch"
 fi
 
 git pull
 
-if [ "$original_branch" != "master" ]; then
-  git checkout "$original_branch"
-  git rebase master
+if [ "$topic_branch" != "$base_branch" ]; then
+  git checkout "$topic_branch"
+  git rebase "$base_branch"
 fi
